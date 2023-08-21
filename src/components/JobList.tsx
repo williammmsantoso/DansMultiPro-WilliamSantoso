@@ -5,13 +5,14 @@ import { JobCard } from "./JobCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface JobParamsInterface {
-    data?: JobListType[],
+    data: JobListType[],
     loading?: boolean,
+    dataLength: number,
     getMore?: any,
     hasMore?: any,
 }
 
-export const JobList = ({ data, loading, getMore, hasMore }: JobParamsInterface) => {
+export const JobList = ({ data, loading, dataLength, getMore, hasMore }: JobParamsInterface) => {
     return <div className="job-container">
         <div className="title text-2xl font-bold">
             Job List
@@ -22,7 +23,7 @@ export const JobList = ({ data, loading, getMore, hasMore }: JobParamsInterface)
             }
 
             <InfiniteScroll
-                dataLength={17}
+                dataLength={dataLength}
                 next={getMore}
                 hasMore={hasMore}
                 loader={null}

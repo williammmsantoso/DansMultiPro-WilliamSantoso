@@ -8,8 +8,14 @@ export const getJobList = async (params: any) => {
         const pagination = page ? `&page=${page}` : ''
 
         const res = await axios.get(`http://dev3.dansmultipro.co.id/api/recruitment/positions.json?${paramsSend}${pagination}`);
+        const res2 = await axios.get(`http://dev3.dansmultipro.co.id/api/recruitment/positions.json`);
 
-        return res;
+        return {
+            data: res.data,
+            total_data: res2.data.length,
+            message: 'Success',
+        };
+        
     } catch(error) {
         return error
     }

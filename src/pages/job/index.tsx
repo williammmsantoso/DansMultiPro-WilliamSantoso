@@ -19,6 +19,7 @@ export default function Index () {
         page: 1,
     });
     const [data, setData] = useState<JobListType[]>([]);
+    const [totalData, setTotalData] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(true);
     const [hasMore, setHasMore] = useState<boolean>(true);
 
@@ -26,6 +27,8 @@ export default function Index () {
         setLoading(true);
         getJobList(params)
             .then((res: any) => {
+                setTotalData(res.total_data);
+
                 const resData = res.data;
                 const filterData = _.filter(resData, el => !_.isNull(el));
 
@@ -47,12 +50,10 @@ export default function Index () {
     }, [params]);
 
     useEffect(() => {
-        console.log(data.length);
-
-        if (data.length > 17) {
+        if (data.length >= totalData) {
             setHasMore(false);
         }
-    }, [data])
+    }, [data]);
 
 
     return <div id="main-page-container">
@@ -64,6 +65,7 @@ export default function Index () {
                     data={data}
                     loading={loading}
                     hasMore={hasMore}
+                    dataLength={totalData}
                     getMore={() => setParams({ ...params, page: params.page + 1 })}
                 />
             </div>
