@@ -1,0 +1,64 @@
+@media screen and (max-width: 800px) {
+    .login-container {
+        .login-wrapper {
+            width: 90% !important;
+        }
+    }
+
+    .navigation-wrapper {
+        padding: 12px !important;
+    }
+
+    .banner-wrapper {
+        height: 100vh !important;
+
+        .banner-flex {
+            flex-direction: column;
+
+            .item {
+                margin: 0 0 8px 0;
+
+                .checkbox-input-container {
+                    padding-left: 0;
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+
+    .job-container {
+        padding: 0 !important;
+
+        .job-list-wrapper {
+            .job-item {
+                padding: 12px 24px;
+                min-height: 500px;
+
+                .top-section {
+                    flex-direction: column;
+                    gap: 8px;
+
+                    .company-logo {
+                        height: 75px;
+                        margin: 8px auto;
+                    }
+                }
+
+                .bottom-section {
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    padding-left: 24px;
+                }
+            }
+        }
+    }
+
+    .detail-job-container {
+        padding: 0 24px !important;
+    }
+
+    .cut-text.type-200-px {
+        width: 100%;
+    }
+}

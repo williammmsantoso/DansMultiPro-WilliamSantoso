@@ -9,22 +9,27 @@ import { Job } from "@/layouts/Job";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getJobList } from "../api/job";
+import _ from "lodash";
 
 export default function Index () {
     const [ params, setParams ] = useState<JobParamsType>({
         description: '',
         location: '',
-        full_time: false
+        full_time: false,
+        page: 1,
     });
     const [data, setData] = useState<JobListType[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [hasMore, setHasMore] = useState<boolean>(true);
 
-    useEffect(() => {
+    const fetchJobList = () => {
         setLoading(true);
-
         getJobList(params)
             .then((res: any) => {
-                setData(res?.data as JobListType[]);
+                const resData = res.data;
+                const filterData = _.filter(resData, el => !_.isNull(el));
+
+                setData([ ...data, ...filterData ]);
                 setLoading(false);
             })
             .catch((error) => {
@@ -35,7 +40,19 @@ export default function Index () {
                 console.log(error);
                 setLoading(false);
             })
+    }
+
+    useEffect(() => {
+        fetchJobList();
     }, [params]);
+
+    useEffect(() => {
+        console.log(data.length);
+
+        if (data.length > 17) {
+            setHasMore(false);
+        }
+    }, [data])
 
 
     return <div id="main-page-container">
@@ -43,7 +60,12 @@ export default function Index () {
             <Banner params={params} setParams={(value: JobParamsType) => setParams(value)} />
 
             <div className="main-container">
-                <JobList data={data} loading={loading} />
+                <JobList
+                    data={data}
+                    loading={loading}
+                    hasMore={hasMore}
+                    getMore={() => setParams({ ...params, page: params.page + 1 })}
+                />
             </div>
         </Job>
     </div>

@@ -22,6 +22,10 @@ body, html {
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &.type-200-px {
+    width: 200px;
+  }
 }
 
 .text-color-grey {

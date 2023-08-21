@@ -2,6 +2,7 @@ export interface JobParamsType{
     description?: string,
     location?: string, 
     full_time?: boolean
+    page: number
 }
 
 export interface JobListType {
