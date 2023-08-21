@@ -3,14 +3,17 @@ import '../styles/scss/styles.scss';
 
 import { store } from '../redux/store';
 import { Provider } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
 import { AppProps } from 'next/app';
+import ToasterContainer from '@/components/layouts/ToasterContainer';
+import { SessionProvider } from 'next-auth/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Provider store={store}>
-    <ToastContainer />  
-    <Component {...pageProps} />
-  </Provider>
+  return <SessionProvider session={pageProps.session}>
+    <Provider store={store}>
+      <ToasterContainer />  
+      <Component {...pageProps} />
+    </Provider>
+  </SessionProvider>
 }
 
 export default MyApp

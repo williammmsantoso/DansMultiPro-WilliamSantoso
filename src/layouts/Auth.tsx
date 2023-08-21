@@ -9,23 +9,21 @@ type IMainProps = {
   children: ReactNode;
 };
 
-export const Job = ({ meta, children}: IMainProps) => {
+export const Auth = ({ meta, children}: IMainProps) => {
     const { data: session } = useSession();
     const router = useRouter();
 
     useEffect(() => {
-      if (!session) {
-        router.push('/');
-        toast.error('Something wrong, please login first', {
+      if (session) {
+        router.push('/job');
+        toast.success('Login successfully!', {
             toastId: '14',
         });
       }
-    }, [])
+    }, [session])
 
     return <div className="h-screen">
         {meta}
-
-        <Navbar/>
 
         <main>
           {children}

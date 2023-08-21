@@ -15,7 +15,6 @@ interface BannerParamsInterface {
 
 export const Banner = ({ params, setParams}: BannerParamsInterface) => {
     const onHandleSubmit = (values: JobParamsType) => {
-        console.log(values);
         setParams(values);
     }
 

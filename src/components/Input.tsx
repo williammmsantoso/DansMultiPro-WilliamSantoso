@@ -10,7 +10,7 @@ interface InputProps {
     placeholder?: string;
     inputClass?: string;
     required?: boolean;
-    type?: "search" | "text" | "none" | "tel" | "url" | "email" | "number" | "decimal" | "hidden";
+    type?: "search" | "text" | "none" | "tel" | "url" | "email" | "number" | "decimal" | "hidden" | "password";
     maxlength?: number;
     minlength?: number;
     handleOnInput?: any;
