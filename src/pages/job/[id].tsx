@@ -55,7 +55,7 @@ export default function Detail() {
             {
                 loading && <Loader />
             }
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between border-bottom-default">
                 <div className="flex items-center">
                     <div className="mr-5">
                         <img className="company-logo" src="/logo_dans.png" alt="company_logo" />
@@ -73,6 +73,7 @@ export default function Detail() {
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <Chip title={data.type} />
                     <Button className="mt-3">
@@ -87,6 +88,7 @@ export default function Detail() {
                     How to Apply
                 </div>
                 <div className="text-base text-color-grey mb-2" dangerouslySetInnerHTML={{ __html: data.how_to_apply }} />
+                <div className="border-bottom-default "></div>
             </div>
             <div className="mt-10">
                 <div className="job-title text-xl font-semibold mb-3">
